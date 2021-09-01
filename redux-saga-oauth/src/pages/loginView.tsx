@@ -1,11 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
+import Container from '../components/common/container';
+import GitHubBox from '../components/loginView/githubBox';
 
 const LoginView: React.FC = () => {
   return (
-    <>
-      <h1>hello</h1>
-    </>
+    <Container>
+      <GitHubBox />
+    </Container>
   );
 };
 
