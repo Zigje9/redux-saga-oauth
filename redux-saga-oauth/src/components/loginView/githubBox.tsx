@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Github } from '@styled-icons/boxicons-logos/Github';
+import { v4 as uuidv4 } from 'uuid';
 
 const Box = styled.div`
   display: flex;
@@ -36,8 +37,7 @@ const Board = styled.div`
 
 const GitHubBox: React.FC = () => {
   const githubAuthorization = () => {
-    window.location.href =
-      'https://github.com/login/oauth/authorize?client_id=5fbae1d0c027c91c57ba&state=1';
+    window.location.href = `https://github.com/login/oauth/authorize?client_id=5fbae1d0c027c91c57ba&state=${uuidv4()}`;
   };
   return (
     <Box onClick={() => githubAuthorization()}>
