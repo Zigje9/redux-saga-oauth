@@ -1,24 +1,24 @@
 import {
-  AUTHORIZATION_REQUEST,
-  AUTHORIZATION_SUCCESS,
-  AUTHORIZATION_FAILURE,
+  AUTHENTICATION_REQUEST,
+  AUTHENTICATION_SUCCESS,
+  AUTHENTICATION_FAILURE,
 } from './type';
 
-export const authorizationRequest = () => ({
-  type: AUTHORIZATION_REQUEST,
+export const authenticationRequest = () => ({
+  type: AUTHENTICATION_REQUEST,
 });
 
-export const authorizationSuccess = () => ({
-  type: AUTHORIZATION_SUCCESS,
+export const authenticationSuccess = () => ({
+  type: AUTHENTICATION_SUCCESS,
   payload: true,
 });
 
-export const authorizationFailure = () => ({
-  type: AUTHORIZATION_FAILURE,
+export const authenticationFailure = () => ({
+  type: AUTHENTICATION_FAILURE,
   payload: false,
 });
 
 export type UserActionRequest =
-  | ReturnType<typeof authorizationRequest>
-  | ReturnType<typeof authorizationSuccess>
-  | ReturnType<typeof authorizationFailure>;
+  | ReturnType<typeof authenticationRequest>
+  | ReturnType<typeof authenticationSuccess>
+  | ReturnType<typeof authenticationFailure>;

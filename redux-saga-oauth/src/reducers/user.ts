@@ -1,34 +1,34 @@
 import {
-  AUTHORIZATION_REQUEST,
-  AUTHORIZATION_SUCCESS,
-  AUTHORIZATION_FAILURE,
-  AuthorizationProps,
+  AUTHENTICATION_REQUEST,
+  AUTHENTICATION_SUCCESS,
+  AUTHENTICATION_FAILURE,
+  AuthenticationProps,
 } from '../actions/type';
 
 import { UserActionRequest } from '../actions/user';
 
-export const initialState: AuthorizationProps = {
-  authorization: false,
+export const initialState: AuthenticationProps = {
+  accessToken: '',
 };
 
 export const user = (
-  state: AuthorizationProps = initialState,
+  state: AuthenticationProps = initialState,
   action: UserActionRequest,
 ) => {
   switch (action.type) {
-    case AUTHORIZATION_REQUEST:
+    case AUTHENTICATION_REQUEST:
       return {
         ...state,
       };
-    case AUTHORIZATION_SUCCESS:
+    case AUTHENTICATION_SUCCESS:
       return {
         ...state,
-        authorization: action.payload,
+        accessToken: action.payload,
       };
-    case AUTHORIZATION_FAILURE:
+    case AUTHENTICATION_FAILURE:
       return {
         ...state,
-        authorization: action.payload,
+        accessToken: action.payload,
       };
     default:
       return state;

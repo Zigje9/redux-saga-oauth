@@ -5,17 +5,17 @@ import * as action from '../actions/user';
 function* loginSaga() {
   try {
     // do something
-    yield put(action.authorizationSuccess());
+    yield put(action.authenticationSuccess());
   } catch (error) {
-    yield put(action.authorizationFailure());
+    yield put(action.authenticationFailure());
     console.log(error);
   }
 }
 
-function* watchAuthorizationRequestSaga() {
-  yield takeEvery(type.AUTHORIZATION_REQUEST, loginSaga);
+function* watchAuthenticationRequestSaga() {
+  yield takeEvery(type.AUTHENTICATION_REQUEST, loginSaga);
 }
 
 export default function* userSaga() {
-  yield all([fork(watchAuthorizationRequestSaga)]);
+  yield all([fork(watchAuthenticationRequestSaga)]);
 }

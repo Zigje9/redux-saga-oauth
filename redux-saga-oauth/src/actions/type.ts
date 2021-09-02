@@ -1,8 +1,8 @@
-/* AUTHORIZATION ACTION TYPE */
-export const AUTHORIZATION_REQUEST = 'AUTHORIZATION_REQUEST' as const;
-export const AUTHORIZATION_SUCCESS = 'AUTHORIZATION_SUCCESS' as const;
-export const AUTHORIZATION_FAILURE = 'AUTHORIZATION_FAILURE' as const;
+/* AUTHENTICATION ACTION TYPE */
+export const AUTHENTICATION_REQUEST = 'AUTHENTICATION_REQUEST' as const;
+export const AUTHENTICATION_SUCCESS = 'AUTHENTICATION_SUCCESS' as const;
+export const AUTHENTICATION_FAILURE = 'AUTHENTICATION_FAILURE' as const;
 
-export interface AuthorizationProps {
-  authorization: boolean;
+export interface AuthenticationProps {
+  accessToken: string;
 }
