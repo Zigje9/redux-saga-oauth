@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/qs": "^6.9.7",
     "@types/react-redux": "^7.1.18",
     "@types/react-router-dom": "^5.1.8",
     "@types/redux-saga": "^0.10.5",
     "@types/styled-components": "^5.1.13",
     "cra-template-typescript": "1.1.2",
+    "qs": "^6.10.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.4",

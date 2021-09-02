@@ -12,7 +12,7 @@ const App: React.FC = () => {
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" component={LoginView} />
+            <Route path="/login" component={LoginView} />
           </Switch>
         </BrowserRouter>
       </ThemeProvider>

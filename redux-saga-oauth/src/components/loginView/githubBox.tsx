@@ -35,12 +35,12 @@ const Board = styled.div`
 `;
 
 const GitHubBox: React.FC = () => {
-  const test = () => {
+  const githubAuthorization = () => {
     window.location.href =
       'https://github.com/login/oauth/authorize?client_id=5fbae1d0c027c91c57ba&state=1';
   };
   return (
-    <Box onClick={() => test()}>
+    <Box onClick={() => githubAuthorization()}>
       <Icon></Icon>
       <Board>GitHub 으로 로그인</Board>
     </Box>
