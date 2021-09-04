@@ -1,32 +1,20 @@
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
-const setHeader = () => {
-  axios.defaults.headers['Content-Type'] = 'application/json';
-};
-
-export const getAxios = (
-  reqUrl: string,
-  reqParams: {},
-): Promise<AxiosInstance> => {
-  setHeader();
-  return axios
-    .create({
-      method: 'get',
-      timeout: 10000,
-      params: { ...reqParams },
-    })
-    .request({ url: reqUrl });
-};
-
-export const postAxios = (
-  reqUrl: string,
-  reqData: {},
-): Promise<AxiosInstance> => {
-  setHeader();
+export const getAccessToken = (
+  code: string,
+  state: string,
+): Promise<AxiosResponse> => {
   return axios
     .create({
       method: 'post',
       timeout: 10000,
+      headers: { accept: 'application/json' },
+      params: {
+        code,
+        state,
+        client_id: 'client-id',
+        client_secret: 'client-secret',
+      },
     })
-    .request({ url: reqUrl, data: reqData });
+    .request({ url: 'https://github.com/login/oauth/access_token' });
 };

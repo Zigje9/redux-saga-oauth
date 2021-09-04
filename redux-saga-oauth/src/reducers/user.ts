@@ -19,6 +19,8 @@ export const user = (
     case AUTHENTICATION_REQUEST:
       return {
         ...state,
+        code: action.code,
+        stateCode: action.stateCode,
       };
     case AUTHENTICATION_SUCCESS:
       return {
@@ -28,7 +30,7 @@ export const user = (
     case AUTHENTICATION_FAILURE:
       return {
         ...state,
-        accessToken: action.payload,
+        accessToken: 'None',
       };
     default:
       return state;

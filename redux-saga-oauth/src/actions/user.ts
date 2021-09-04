@@ -4,18 +4,20 @@ import {
   AUTHENTICATION_FAILURE,
 } from './type';
 
-export const authenticationRequest = () => ({
+export const authenticationRequest = (code: string, stateCode: string) => ({
   type: AUTHENTICATION_REQUEST,
+  code,
+  stateCode,
 });
 
-export const authenticationSuccess = () => ({
+export const authenticationSuccess = (accessToken: string) => ({
   type: AUTHENTICATION_SUCCESS,
-  payload: true,
+  payload: accessToken,
 });
 
 export const authenticationFailure = () => ({
   type: AUTHENTICATION_FAILURE,
-  payload: false,
+  payload: '',
 });
 
 export type UserActionRequest =
