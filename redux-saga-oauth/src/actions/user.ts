@@ -12,12 +12,11 @@ export const authenticationRequest = (code: string, stateCode: string) => ({
 
 export const authenticationSuccess = (accessToken: string) => ({
   type: AUTHENTICATION_SUCCESS,
-  payload: accessToken,
+  accessToken,
 });
 
 export const authenticationFailure = () => ({
   type: AUTHENTICATION_FAILURE,
-  payload: '',
 });
 
 export type UserActionRequest =

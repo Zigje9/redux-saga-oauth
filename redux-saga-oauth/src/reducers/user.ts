@@ -9,12 +9,11 @@ import { UserActionRequest } from '../actions/user';
 
 export const initialState: AuthenticationProps = {
   accessToken: '',
+  code: '',
+  stateCode: '',
 };
 
-export const user = (
-  state: AuthenticationProps = initialState,
-  action: UserActionRequest,
-) => {
+export const user = (state = initialState, action: UserActionRequest) => {
   switch (action.type) {
     case AUTHENTICATION_REQUEST:
       return {
@@ -25,7 +24,7 @@ export const user = (
     case AUTHENTICATION_SUCCESS:
       return {
         ...state,
-        accessToken: action.payload,
+        accessToken: action.accessToken,
       };
     case AUTHENTICATION_FAILURE:
       return {
