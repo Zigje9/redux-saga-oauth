@@ -2,19 +2,21 @@ import axios, { AxiosResponse } from 'axios';
 
 export const getAccessToken = (
   code: string,
-  state: string,
+  stateCode: string,
 ): Promise<AxiosResponse> => {
   return axios
     .create({
       method: 'post',
       timeout: 10000,
-      headers: { accept: 'application/json' },
+      headers: {
+        accept: 'application/json',
+      },
       params: {
         code,
-        state,
-        client_id: 'client-id',
-        client_secret: 'client-secret',
+        state: stateCode,
+        client_id: 'YOUR_CLIENT_ID',
+        client_secret: 'YOUR_CLIENT_SECRET',
       },
     })
-    .request({ url: 'https://github.com/login/oauth/access_token' });
+    .request({ url: '/login/oauth/access_token' });
 };

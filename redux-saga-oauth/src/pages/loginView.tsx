@@ -2,23 +2,24 @@ import React, { useEffect } from 'react';
 import Container from '../components/common/container';
 import GitHubBox from '../components/loginView/githubBox';
 import qs from 'qs';
+import { useDispatch } from 'react-redux';
+import { authenticationRequest } from '../actions/user';
 
-interface QueryString<T> {
-  code?: T;
-  site?: T;
-  state?: T;
+interface QueryString {
+  code: string;
+  site: string;
+  state: string;
 }
 
 const LoginView: React.FC = () => {
+  const dispatch = useDispatch();
   useEffect(() => {
-    const { code, site, state }: QueryString<string> = qs.parse(
-      window.location.search,
-      {
-        ignoreQueryPrefix: true,
-      },
-    );
-    console.log(code, site, state);
-  }, []);
+    const { code, site, state } = qs.parse(window.location.search, {
+      ignoreQueryPrefix: true,
+    }) as unknown as QueryString;
+    console.log(site);
+    dispatch(authenticationRequest(code, state));
+  });
   return (
     <Container>
       <GitHubBox />
