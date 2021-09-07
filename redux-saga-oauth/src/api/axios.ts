@@ -19,5 +19,5 @@ export const getAccessToken = (
         site,
       },
     })
-    .request({ url: 'http://localhost:5000/login/accesstoken' });
+    .request({ url: 'http://localhost:5000/login/authentication' });
 };
