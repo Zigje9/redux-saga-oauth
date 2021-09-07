@@ -5,7 +5,7 @@ import { getAccessToken } from '../api/axios';
 
 interface TokenData {
   data: {
-    access_token: string;
+    token: string;
   };
 }
 
@@ -16,9 +16,8 @@ function* authenticationSaga(
 ): Generator {
   try {
     const response = yield call(getAccessToken, code, stateCode, site);
-    console.log(response);
     const { data } = response as TokenData;
-    const accessToken = data.access_token;
+    const accessToken = data.token;
     yield put(action.authenticationSuccess(accessToken));
   } catch (error) {
     yield put(action.authenticationFailure());
