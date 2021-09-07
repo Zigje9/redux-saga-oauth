@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 interface TokenData {
   data: {
     access_token: string;
@@ -12,11 +11,10 @@ export const getAccessToken = async (
   site: string,
 ) => {
   try {
-    const response = axios.post(
-      `${process.env.GITHUB_TOKEN_URL}/?code=${code}&state=${state}`,
-    );
-    const { data } = response as unknown as TokenData;
-    return data.access_token;
+    const url = `${process.env.GITHUB_TOKEN_URL}/?client_id=${process.env.GITHUB_CLIENT_ID}&client_secret=${process.env.GITHUB_CLIENT_SECRET}&code=${code}&state=${state}`;
+    const response = await axios.post(url);
+    const accessToken = /(access_token=)(.*?)(&scope)/.exec(response.data)[2];
+    return accessToken;
   } catch (error) {
     console.log(error);
   }
