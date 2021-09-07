@@ -1,5 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+
 export const getAccessToken = (
   code: string,
   stateCode: string,
@@ -10,14 +12,11 @@ export const getAccessToken = (
       method: 'post',
       timeout: 10000,
       headers: {
-        accept: 'application/json',
         'Access-Control-Allow-Origin': '*',
       },
-      data: {
-        code,
-        state: stateCode,
-        site,
-      },
     })
-    .request({ url: 'http://localhost:5000/login/authentication' });
+    .request({
+      url: 'http://localhost:5000/login/authentication',
+      data: { code, state: stateCode, site },
+    });
 };
