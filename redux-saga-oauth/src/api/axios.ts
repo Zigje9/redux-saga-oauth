@@ -3,6 +3,7 @@ import axios, { AxiosResponse } from 'axios';
 export const getAccessToken = (
   code: string,
   stateCode: string,
+  site: string,
 ): Promise<AxiosResponse> => {
   return axios
     .create({
@@ -10,13 +11,13 @@ export const getAccessToken = (
       timeout: 10000,
       headers: {
         accept: 'application/json',
+        'Access-Control-Allow-Origin': '*',
       },
-      params: {
+      data: {
         code,
         state: stateCode,
-        client_id: 'YOUR_CLIENT_ID',
-        client_secret: 'YOUR_CLIENT_SECRET',
+        site,
       },
     })
-    .request({ url: '/login/oauth/access_token' });
+    .request({ url: 'http://localhost:5000/login/accesstoken' });
 };

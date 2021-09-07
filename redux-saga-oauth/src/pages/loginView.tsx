@@ -14,11 +14,10 @@ interface QueryString {
 const LoginView: React.FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    const { code, site, state } = qs.parse(window.location.search, {
+    const { code, state, site } = qs.parse(window.location.search, {
       ignoreQueryPrefix: true,
     }) as unknown as QueryString;
-    console.log(site);
-    dispatch(authenticationRequest(code, state));
+    dispatch(authenticationRequest(code, state, site));
   });
   return (
     <Container>

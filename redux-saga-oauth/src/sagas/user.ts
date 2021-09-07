@@ -6,14 +6,16 @@ import { getAccessToken } from '../api/axios';
 interface TokenData {
   data: {
     access_token: string;
-    token_type: string;
-    scope: string;
   };
 }
 
-function* authenticationSaga(code: string, stateCode: string): Generator {
+function* authenticationSaga(
+  code: string,
+  stateCode: string,
+  site: string,
+): Generator {
   try {
-    const response = yield call(getAccessToken, code, stateCode);
+    const response = yield call(getAccessToken, code, stateCode, site);
     const { data } = response as TokenData;
     const accessToken = data.access_token;
     yield put(action.authenticationSuccess(accessToken));
@@ -25,10 +27,10 @@ function* authenticationSaga(code: string, stateCode: string): Generator {
 
 function* watchAuthenticationRequestSaga(): Generator {
   const response = yield take(type.AUTHENTICATION_REQUEST);
-  const { code, stateCode } = response as ReturnType<
+  const { code, stateCode, site } = response as ReturnType<
     typeof action.authenticationRequest
   >;
-  yield call(authenticationSaga, code, stateCode);
+  yield call(authenticationSaga, code, stateCode, site);
 }
 
 export default function* userSaga() {
