@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
+import * as service from './service';
 
-export const authentication = (req: Request, res: Response) => {
-  console.log(req.body);
-  return res.status(200).json('h');
+export const authentication = async (req: Request, res: Response) => {
+  const { code, state, site } = req.body.data;
+  const accessToken = await service.getAccessToken(code, state, site);
+  return res.status(200).json({ token: accessToken });
 };
