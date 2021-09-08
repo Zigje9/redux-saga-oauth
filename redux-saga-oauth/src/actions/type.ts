@@ -8,3 +8,11 @@ export interface AuthenticationProps {
   code: string;
   stateCode: string;
 }
+
+/* LOADING ACTION TYPE */
+export const LOADING_START = 'LOADING_START' as const;
+export const LOADING_END = 'LOADING_END' as const;
+
+export interface LoadingProps {
+  isLoading: boolean;
+}
