@@ -26,11 +26,13 @@ function* authenticationSaga(
 }
 
 function* watchAuthenticationRequestSaga(): Generator {
-  const response = yield take(type.AUTHENTICATION_REQUEST);
-  const { code, stateCode, site } = response as ReturnType<
-    typeof action.authenticationRequest
-  >;
-  yield call(authenticationSaga, code, stateCode, site);
+  while (true) {
+    const response = yield take(type.AUTHENTICATION_REQUEST);
+    const { code, stateCode, site } = response as ReturnType<
+      typeof action.authenticationRequest
+    >;
+    yield call(authenticationSaga, code, stateCode, site);
+  }
 }
 
 export default function* userSaga() {
