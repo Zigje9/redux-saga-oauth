@@ -4,6 +4,8 @@ import GitHubBox from '../components/loginView/githubBox';
 import qs from 'qs';
 import { useDispatch } from 'react-redux';
 import { authenticationRequest } from '../actions/user';
+import { useSelector } from 'react-redux';
+import { RootState } from '../reducers';
 
 interface QueryString {
   code: string;
@@ -12,17 +14,26 @@ interface QueryString {
 }
 
 const LoginView: React.FC = () => {
+  const { isLoading } = useSelector((state: RootState) => state.loading);
   const dispatch = useDispatch();
   useEffect(() => {
     const { code, state, site } = qs.parse(window.location.search, {
       ignoreQueryPrefix: true,
     }) as unknown as QueryString;
     dispatch(authenticationRequest(code, state, site));
-  });
+  }, [dispatch]);
   return (
-    <Container>
-      <GitHubBox />
-    </Container>
+    <>
+      {isLoading ? (
+        <>
+          <h2>로딩중</h2>
+        </>
+      ) : (
+        <Container>
+          <GitHubBox />
+        </Container>
+      )}
+    </>
   );
 };
 
