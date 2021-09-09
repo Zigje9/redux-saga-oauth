@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { authenticationRequest } from '../actions/user';
 import { useSelector } from 'react-redux';
 import { RootState } from '../reducers';
+import Loading from '../components/common/loading';
 
 interface QueryString {
   code: string;
@@ -25,9 +26,7 @@ const LoginView: React.FC = () => {
   return (
     <>
       {isLoading ? (
-        <>
-          <h2>로딩중</h2>
-        </>
+        <Loading />
       ) : (
         <Container>
           <GitHubBox />
