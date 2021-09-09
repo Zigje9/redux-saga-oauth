@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import Container from './container';
 
-interface TempProps {
+interface SpinProps {
   info: number[];
 }
 
@@ -22,7 +22,7 @@ const SpinnerBox = styled.div`
   height: 100px;
 `;
 
-const Spin = styled.div<TempProps>`
+const Spin = styled.div<SpinProps>`
   transform-origin: 45px 45px;
   animation: ${blink} 1.2s linear infinite;
   transform: ${(props) => `rotate(${props.info[0]}deg)`};
