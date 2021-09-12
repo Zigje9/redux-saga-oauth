@@ -37,10 +37,9 @@ export const loginSuccess = (isLogin: boolean, userId: string) => ({
   userId,
 });
 
-export const loginFailure = (isLogin: boolean, userId: string) => ({
+export const loginFailure = (isLogin: boolean) => ({
   type: LOGIN_FAILURE,
   isLogin,
-  userId,
 });
 
 export type UserActionRequest =

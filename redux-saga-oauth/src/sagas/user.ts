@@ -10,6 +10,12 @@ interface TokenData {
   };
 }
 
+interface UserData {
+  data: {
+    userId: string;
+  };
+}
+
 function* authenticationSaga(
   code: string,
   stateCode: string,
@@ -28,6 +34,18 @@ function* authenticationSaga(
   }
 }
 
+function* loginSaga(acessToken: string): Generator {
+  try {
+    const response = yield call(getUserInfo, accessToken);
+    const { data } = response as UserData;
+    const userId = data.userId;
+    yield put(userAction.loginSuccess(true, userId));
+  } catch (error) {
+    yield put(userAction.loginFailure(false));
+    console.log(error);
+  }
+}
+
 function* watchAuthenticationRequestSaga(): Generator {
   while (true) {
     const response = yield take(type.AUTHENTICATION_REQUEST);
@@ -38,6 +56,16 @@ function* watchAuthenticationRequestSaga(): Generator {
   }
 }
 
+function* watchLoginRequestSaga(): Generator {
+  while (true) {
+    const accessToken = yield take(type.LOGIN_REQUEST); // get access_token from local_storage
+    yield call(loginSaga, accessToken);
+  }
+}
+
 export default function* userSaga() {
-  yield all([fork(watchAuthenticationRequestSaga)]);
+  yield all([
+    fork(watchAuthenticationRequestSaga),
+    fork(watchLoginRequestSaga),
+  ]);
 }
