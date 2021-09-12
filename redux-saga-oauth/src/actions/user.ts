@@ -2,6 +2,9 @@ import {
   AUTHENTICATION_REQUEST,
   AUTHENTICATION_SUCCESS,
   AUTHENTICATION_FAILURE,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
 } from './type';
 
 export const authenticationRequest = (
@@ -22,6 +25,22 @@ export const authenticationSuccess = (accessToken: string) => ({
 
 export const authenticationFailure = () => ({
   type: AUTHENTICATION_FAILURE,
+});
+
+export const loginRequest = () => ({
+  type: LOGIN_REQUEST,
+});
+
+export const loginSuccess = (isLogin: boolean, userId: string) => ({
+  type: LOGIN_SUCCESS,
+  isLogin,
+  userId,
+});
+
+export const loginFailure = (isLogin: boolean, userId: string) => ({
+  type: LOGIN_FAILURE,
+  isLogin,
+  userId,
 });
 
 export type UserActionRequest =
