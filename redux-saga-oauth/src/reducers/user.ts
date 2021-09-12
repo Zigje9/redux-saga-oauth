@@ -2,12 +2,12 @@ import {
   AUTHENTICATION_REQUEST,
   AUTHENTICATION_SUCCESS,
   AUTHENTICATION_FAILURE,
-  AuthenticationProps,
+  AuthProps,
 } from '../actions/type';
 
 import { UserActionRequest } from '../actions/user';
 
-export const initialState: AuthenticationProps = {
+export const initialState: AuthProps = {
   accessToken: '',
   code: '',
   stateCode: '',
