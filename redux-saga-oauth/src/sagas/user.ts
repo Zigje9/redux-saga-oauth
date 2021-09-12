@@ -34,9 +34,9 @@ function* authenticationSaga(
   }
 }
 
-function* loginSaga(acessToken: string): Generator {
+function* loginSaga(accessToken: string): Generator {
   try {
-    const response = yield call(getUserInfo, accessToken);
+    const response = yield call(getUserInfo, accessToken); // api call to server
     const { data } = response as UserData;
     const userId = data.userId;
     yield put(userAction.loginSuccess(true, userId));
@@ -58,7 +58,10 @@ function* watchAuthenticationRequestSaga(): Generator {
 
 function* watchLoginRequestSaga(): Generator {
   while (true) {
-    const accessToken = yield take(type.LOGIN_REQUEST); // get access_token from local_storage
+    const response = yield take(type.LOGIN_REQUEST); // get access_token from local_storage
+    const { accessToken } = response as ReturnType<
+      typeof userAction.loginRequest
+    >;
     yield call(loginSaga, accessToken);
   }
 }
