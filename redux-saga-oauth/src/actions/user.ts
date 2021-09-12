@@ -46,4 +46,7 @@ export const loginFailure = (isLogin: boolean, userId: string) => ({
 export type UserActionRequest =
   | ReturnType<typeof authenticationRequest>
   | ReturnType<typeof authenticationSuccess>
-  | ReturnType<typeof authenticationFailure>;
+  | ReturnType<typeof authenticationFailure>
+  | ReturnType<typeof loginRequest>
+  | ReturnType<typeof loginSuccess>
+  | ReturnType<typeof loginFailure>;
