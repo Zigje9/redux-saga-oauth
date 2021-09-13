@@ -2,7 +2,7 @@ import { put, call, fork, take, all } from 'redux-saga/effects';
 import * as type from '../actions/type';
 import * as userAction from '../actions/user';
 import * as loadingAction from '../actions/loading';
-import { getAccessToken } from '../api/axios';
+import { getAccessToken, getUserInfo } from '../api/axios';
 
 interface TokenData {
   data: {
