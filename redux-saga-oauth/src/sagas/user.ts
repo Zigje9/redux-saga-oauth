@@ -26,6 +26,7 @@ function* authenticationSaga(
     const response = yield call(getAccessToken, code, stateCode, site);
     const { data } = response as TokenData;
     const accessToken = data.token;
+    window.localStorage.setItem('Token', accessToken);
     yield put(userAction.authenticationSuccess(accessToken));
     yield put(loadingAction.loadingEnd(false));
   } catch (error) {
@@ -58,10 +59,8 @@ function* watchAuthenticationRequestSaga(): Generator {
 
 function* watchLoginRequestSaga(): Generator {
   while (true) {
-    const response = yield take(type.LOGIN_REQUEST); // get access_token from local_storage
-    const { accessToken } = response as ReturnType<
-      typeof userAction.loginRequest
-    >;
+    yield take(type.LOGIN_REQUEST);
+    const accessToken = window.localStorage.getItem('Token') as string;
     yield call(loginSaga, accessToken);
   }
 }
