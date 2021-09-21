@@ -19,3 +19,14 @@ export const getAccessToken = async (
     console.log(error);
   }
 };
+
+export const getInfo = async (accessToken: string) => {
+  try {
+    const url = ``;
+    const response = await axios.post(url);
+    const userInfo = {};
+    return userInfo;
+  } catch (error) {
+    console.log(error);
+  }
+};
