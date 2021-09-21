@@ -9,6 +9,6 @@ export const authentication = async (req: Request, res: Response) => {
 
 export const getUserInfo = async (req: Request, res: Response) => {
   const { accessToken } = req.body;
-  const userInfo = {};
+  const userInfo = service.getInfo(accessToken);
   return res.status(200).json({ userInfo });
 };
