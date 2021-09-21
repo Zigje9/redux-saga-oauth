@@ -6,3 +6,9 @@ export const authentication = async (req: Request, res: Response) => {
   const accessToken = await service.getAccessToken(code, state, site);
   return res.status(200).json({ token: accessToken });
 };
+
+export const getUserInfo = async (req: Request, res: Response) => {
+  const { accessToken } = req.body;
+  const userInfo = {};
+  return res.status(200).json({ userInfo });
+};
