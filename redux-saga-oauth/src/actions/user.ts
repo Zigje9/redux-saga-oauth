@@ -27,9 +27,8 @@ export const authenticationFailure = () => ({
   type: AUTHENTICATION_FAILURE,
 });
 
-export const loginRequest = (accessToken: string) => ({
+export const loginRequest = () => ({
   type: LOGIN_REQUEST,
-  accessToken,
 });
 
 export const loginSuccess = (isLogin: boolean, userId: string) => ({

@@ -3,7 +3,7 @@ import Container from '../components/common/container';
 import GitHubBox from '../components/loginView/githubBox';
 import qs from 'qs';
 import { useDispatch } from 'react-redux';
-import { authenticationRequest } from '../actions/user';
+import { authenticationRequest, loginRequest } from '../actions/user';
 import { useSelector } from 'react-redux';
 import { RootState } from '../reducers';
 import Loading from '../components/common/loading';
@@ -22,6 +22,7 @@ const LoginView: React.FC = () => {
       ignoreQueryPrefix: true,
     }) as unknown as QueryString;
     dispatch(authenticationRequest(code, state, site));
+    dispatch(loginRequest());
   }, [dispatch]);
   return (
     <>
