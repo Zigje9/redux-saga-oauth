@@ -31,6 +31,7 @@ function* authenticationSaga(
     yield put(loadingAction.loadingEnd(false));
   } catch (error) {
     yield put(userAction.authenticationFailure());
+    window.localStorage.removeItem('Token');
     console.log(error);
   }
 }
